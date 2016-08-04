@@ -35,7 +35,9 @@ describe("About Functions", function() {
       }
       return childfunction();
     }
-    expect(parentfunction()).toBe(FILL_ME_IN);
+    // lexical scoping: 
+    // new function creates a new scope.
+    expect(parentfunction()).toBe('local');
   });
 
   it("should use lexical scoping to synthesise functions", function () {
@@ -49,10 +51,17 @@ describe("About Functions", function() {
       return newFunction;
     }
 
+    // mysteryFunction3 === 3
     var mysteryFunction3 = makeMysteryFunction(3);
-    var mysteryFunction5 = makeMysteryFunction(5);
+    // new result is 13
 
-    expect(mysteryFunction3(10) + mysteryFunction5(5)).toBe(FILL_ME_IN);
+    // mysteryFunction5 === 5
+    var mysteryFunction5 = makeMysteryFunction(5);
+    // new result is 10
+
+    // 13 + 10 = 23
+
+    expect(mysteryFunction3(10) + mysteryFunction5(5)).toBe(23);
   });
 
   it("should allow extra function arguments", function () {
